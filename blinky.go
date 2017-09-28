@@ -5,8 +5,9 @@ import "time"
 import "net/http"
 
 func main() {
-	var cells [25]cell
-	var ledBitmap [25]uint32
+	numCells := 15
+	cells := make([]cell, numCells)
+	ledBitmap := make([]uint32, numCells)
 	client := &http.Client{Timeout: 2 * time.Second}
 	for i := 0; i < len(cells); i++ {
 		cells[i] = newCell(client, "http://104.196.242.214/api/logs", i)
