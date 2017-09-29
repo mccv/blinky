@@ -21,7 +21,7 @@ type cell struct {
 }
 
 func fadeCycles() int {
-	return rand.Int() % 100
+	return 50 + rand.Int() % 100
 }
 
 type cycler interface {
@@ -32,8 +32,8 @@ type cycler interface {
 func (c *cell) setError(err error) {
 	c.lastError = err
 	c.baseRed = 255
-	c.baseGreen = 255
-	c.baseBlue = 255
+	c.baseGreen = 0
+	c.baseBlue = 0
 	c.setCurrentColor(c.baseRed, c.baseGreen, c.baseBlue)
 	c.fadeCycles = fadeCycles()
 	c.fetching = false

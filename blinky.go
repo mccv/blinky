@@ -6,11 +6,11 @@ import "net/http"
 import "github.com/jgarff/ws2811"
 
 func main() {
-	numCells := 15
+	numCells := 25
 	cells := make([]cell, numCells)
 	ledBitmap := make([]uint32, numCells)
 	client := &http.Client{Timeout: 2 * time.Second}
-	ws2811.Init(18, 15, 255)
+	ws2811.Init(18, numCells, 255)
 	for i := 0; i < len(cells); i++ {
 		cells[i] = newCell(client, "http://104.196.242.214/api/logs", i)
 	}
