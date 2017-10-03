@@ -15,21 +15,23 @@ func main() {
 		cells[i] = newCell(client, "http://104.196.242.214/api/logs", i)
 	}
 	sleepTime := 30 * time.Millisecond
-	for i := 0; i < 10000; i++ {
+	cycles := 0
+	errs := 0
+	for {
+		cycles++
+		if cycles%100 == 0 {
+			fmt.Printf("%d cycles, %d errs\n", cycles, errs)
+		}
 		for j := 0; j < len(cells); j++ {
 			cells[j].cycle()
 			if cells[j].lastError != nil {
-				fmt.Printf("cell %d error: %v", j, cells[j].lastError)
+				errs++
 				cells[j].lastError = nil
-				fmt.Print("E")
-			} else {
-				fmt.Print(".")
 			}
 			ledBitmap[j] = cells[j].currentColor
 		}
 		ws2811.SetBitmap(ledBitmap)
 		ws2811.Render()
-		fmt.Println("")
 		time.Sleep(sleepTime)
 	}
 }

@@ -21,7 +21,7 @@ type cell struct {
 }
 
 func fadeCycles() int {
-	return 50 + rand.Int() % 100
+	return 50 + rand.Int()%100
 }
 
 type cycler interface {
