@@ -36,6 +36,7 @@ func (c *cell) setError(err error) {
 	c.baseBlue = 0
 	c.setCurrentColor(c.baseRed, c.baseGreen, c.baseBlue)
 	c.fadeCycles = fadeCycles()
+	c.currentCycle = c.fadeCycles
 	c.fetching = false
 }
 
